@@ -1,5 +1,4 @@
 class Image
-
   def initialize(array) 
     @image = array
   end
@@ -30,10 +29,18 @@ class Image
     @image.each_index do |rowindex|
       @image[rowindex].each_index do |colindex|
         if @image[rowindex][colindex] == 1
-          @image[rowindex +1][colindex] = 1 #up
-          @image[rowindex -1][colindex] = 1 #down
-          @image[rowindex][colindex +1] = 1 #right
-          @image[rowindex][colindex -1] = 1 #left
+          if rowindex == 0   
+            @image[rowindex +1][colindex] = 1 #up
+          end
+          if rowindex == @image.length-1 
+            @image[rowindex -1][colindex] = 1 #down
+          end
+          if colindex == 0   
+            @image[rowindex][colindex +1] = 1 #right
+          end
+          if colindex == @image.length-1
+            @image[rowindex][colindex -1] = 1 #left
+          end
           #update neighbors with 1's 
           #gonna be nested if statement
         end
@@ -43,7 +50,7 @@ class Image
     @image.each do |subarr|
       str = ""
       subarr.each do |item|
-        str << intem.to_s
+        str << item.to_s
       end
       puts str
     end
@@ -52,10 +59,10 @@ class Image
 end
 
 image = Image.new([
+  [1, 0, 0, 0],
   [0, 0, 0, 0],
-  [0, 1, 0, 0],
-  [0, 0, 0, 1],
-  [0, 0, 0, 0]
+  [0, 0, 0, 0],
+  [0, 0, 0, 1]
 ])
 
 image.output_image
