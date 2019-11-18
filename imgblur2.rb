@@ -30,16 +30,16 @@ class Image
       @image[rowindex].each_index do |colindex|
         if @image[rowindex][colindex] == 1
           if rowindex == 0   
-            @image[rowindex +1][colindex] = 1 #up
+            copy[rowindex +1][colindex] = 1 #up
           end
           if rowindex == @image.length-1 
-            @image[rowindex -1][colindex] = 1 #down
+            copy[rowindex -1][colindex] = 1 #down
           end
-          if colindex == 0   
-            @image[rowindex][colindex +1] = 1 #right
+          if colindex == @image[rowindex].length-1
+            copy[rowindex][colindex -1] = 1 #right
           end
-          if colindex == @image.length-1
-            @image[rowindex][colindex -1] = 1 #left
+          if colindex == 0
+            copy[rowindex][colindex +1] = 1 #left
           end
           #update neighbors with 1's 
           #gonna be nested if statement
@@ -61,11 +61,12 @@ end
 image = Image.new([
   [1, 0, 0, 0],
   [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 1]
+  [0, 0, 1, 0],
+  [0, 0, 0, 0]
 ])
 
 image.output_image
 puts "\n"
 image.blur
+
 
