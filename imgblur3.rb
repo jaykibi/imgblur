@@ -48,17 +48,24 @@ class Image
     end
     @image = copy 
   end
+
+  def blur2(distance)
+    distance.times do 
+      blur
+    end
+  end
+
 end
 
 image = Image.new([
-  [1, 0, 0, 0],
+  [0, 0, 0, 1],
+  [0, 1, 0, 0],
   [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 1, 0]
+  [0, 0, 0, 0]
 ])
 
 image.output_image
 puts
-image.blur
+image.blur2 2
 image.output_image
 
